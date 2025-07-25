@@ -16,43 +16,6 @@
     <a href="#contact" class="bg-blue-600 text-white py-3 px-6 rounded-xl hover:bg-blue-700">Get a Free Quote</a>
   </section>
 
-  <!-- Services -->
-  <section class="py-16 px-6 max-w-6xl mx-auto">
-    <h2 class="text-3xl font-semibold mb-8 text-center">Our Services</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h3 class="font-bold text-xl mb-2">E-commerce Product Scraping</h3>
-        <p>Extract prices, stock status, reviews from Amazon, Flipkart, Noon, Walmart, etc.</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h3 class="font-bold text-xl mb-2">Real Estate Listings</h3>
-        <p>Scrape property data from Zillow, 99acres, Magicbricks, and other real estate portals.</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h3 class="font-bold text-xl mb-2">Custom API Development</h3>
-        <p>Get structured APIs from websites that don't offer public access to data.</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h3 class="font-bold text-xl mb-2">Lead Generation Data</h3>
-        <p>Scrape company info, emails, LinkedIn data for sales and marketing outreach.</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h3 class="font-bold text-xl mb-2">Price Monitoring</h3>
-        <p>Track competitor prices regularly and get alerts for changes.</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h3 class="font-bold text-xl mb-2">Proxies & Anti-Bot Bypass</h3>
-        <p>We use rotating proxies, CAPTCHA solving, JS rendering for high success rates.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tech Stack -->
-  <section class="bg-gray-100 py-16 px-6">
-    <h2 class="text-3xl font-semibold mb-6 text-center">Tech We Use</h2>
-    <p class="text-center mb-8 text-gray-600">Python, Scrapy, Selenium, Playwright, BeautifulSoup, MongoDB, AWS, and more</p>
-  </section>
-
   <!-- Contact Form -->
   <section id="contact" class="py-16 px-6 max-w-3xl mx-auto">
     <h2 class="text-3xl font-semibold mb-8 text-center">Get in Touch</h2>
@@ -65,7 +28,6 @@
     <p id="status" class="mt-4 text-center text-green-600 hidden">Thank you! We’ll get back to you soon.</p>
   </section>
 
-  <!-- Footer -->
   <footer class="bg-gray-800 text-white py-6 text-center">
     <p>&copy; 2025 Web Scraping Experts. All rights reserved.</p>
   </footer>
@@ -74,30 +36,45 @@
   <script>
     const SUPABASE_URL = "https://ldvuktgqvisftvctklbw.supabase.co";
     const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxkdnVrdGdxdmlzZnR2Y3RrbGJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM0MzUxMjEsImV4cCI6MjA2OTAxMTEyMX0.8goYVz4jbGXodNOr0iyRP6YvxiCwYulP-Nm0z3drDug";
-
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    document.getElementById("contactForm").addEventListener("submit", async function (e) {
       e.preventDefault();
+
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const query = document.getElementById("query").value;
 
       const { error } = await supabase.from("User_data").insert([
-        {
-          User_Name: name,
-          User_Email: email,
-          User_Querry: query
-        }
+        { User_Name: name, User_Email: email, User_Querry: query }
       ]);
 
       if (error) {
         alert("There was an error submitting your request. Please try again.");
         console.error(error);
-      } else {
-        document.getElementById("contactForm").reset();
-        document.getElementById("status").classList.remove("hidden");
+        return;
       }
+
+      // Call app.py to send email
+      fetch("http://127.0.0.1:5000/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, query })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message) {
+          document.getElementById("contactForm").reset();
+          document.getElementById("status").classList.remove("hidden");
+          alert("Request submitted and email sent successfully!");
+        } else {
+          alert("Data saved, but email sending failed: " + (data.error || "Unknown error"));
+        }
+      })
+      .catch(err => {
+        console.error("Email error:", err);
+        alert("Error calling backend to send email.");
+      });
     });
   </script>
 
