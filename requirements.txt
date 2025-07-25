@@ -1,6 +1,5 @@
 Flask
 python-dotenv
 supabase
-smtplib
 flask_cors
 flask_mail
