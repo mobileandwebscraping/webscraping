@@ -56,7 +56,7 @@
       }
 
       // Call app.py to send email
-      fetch("http://127.0.0.1:5000/send-email", {
+      fetch("https://mobileandwebscraping.github.io/webscraping/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, query })
