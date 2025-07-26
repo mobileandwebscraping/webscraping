@@ -93,8 +93,7 @@
         return;
       }
 
-      // Call app.py to send email
-      fetch("http://127.0.0.1:5000/send-email", {
+      fetch("https://webscraping-k15j.onrender.com/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, query })
@@ -109,10 +108,10 @@
           alert("Data saved, but email sending failed: " + (data.error || "Unknown error"));
         }
       })
-      .catch(err => {
-        console.error("Email error:", err);
-        alert("Error calling backend to send email.");
-      });
+      <!-- .catch(err => { -->
+        <!-- console.error("Email error:", err); -->
+        <!-- alert("Thank you! We’ll get back to you soon."); -->
+      <!-- }); -->
     });
   </script>
 
