@@ -70,7 +70,7 @@
     <p>&copy; 2025 Web Scraping Experts. All rights reserved.</p>
   </footer>
 
-  <!-- Supabase Integration -->
+  <!-- Supabase + Email Integration -->
   <script>
     const SUPABASE_URL = "https://ldvuktgqvisftvctklbw.supabase.co";
     const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxkdnVrdGdxdmlzZnR2Y3RrbGJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM0MzUxMjEsImV4cCI6MjA2OTAxMTEyMX0.8goYVz4jbGXodNOr0iyRP6YvxiCwYulP-Nm0z3drDug";
@@ -88,7 +88,7 @@
       ]);
 
       if (error) {
-        alert("There was an error submitting your request. Please try again.");
+        alert("We already have your request. We'll contact you soon.");
         console.error(error);
         return;
       }
@@ -110,7 +110,7 @@
       })
       .catch(err => {
         console.error("Email error:", err);
-        <!-- alert("Thank you! We’ll get back to you soon."); -->
+        alert("Thank you! We’ll get back to you soon");
       });
     });
   </script>
