@@ -16,6 +16,43 @@
     <a href="#contact" class="bg-blue-600 text-white py-3 px-6 rounded-xl hover:bg-blue-700">Get a Free Quote</a>
   </section>
 
+  <!-- Services -->
+  <section class="py-16 px-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-semibold mb-8 text-center">Our Services</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-xl shadow-md">
+        <h3 class="font-bold text-xl mb-2">E-commerce Product Scraping</h3>
+        <p>Extract prices, stock status, reviews from Amazon, Flipkart, Noon, Walmart, etc.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-md">
+        <h3 class="font-bold text-xl mb-2">Real Estate Listings</h3>
+        <p>Scrape property data from Zillow, 99acres, Magicbricks, and other real estate portals.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-md">
+        <h3 class="font-bold text-xl mb-2">Custom API Development</h3>
+        <p>Get structured APIs from websites that don't offer public access to data.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-md">
+        <h3 class="font-bold text-xl mb-2">Lead Generation Data</h3>
+        <p>Scrape company info, emails, LinkedIn data for sales and marketing outreach.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-md">
+        <h3 class="font-bold text-xl mb-2">Price Monitoring</h3>
+        <p>Track competitor prices regularly and get alerts for changes.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-md">
+        <h3 class="font-bold text-xl mb-2">Proxies & Anti-Bot Bypass</h3>
+        <p>We use rotating proxies, CAPTCHA solving, JS rendering for high success rates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="bg-gray-100 py-16 px-6">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Tech We Use</h2>
+    <p class="text-center mb-8 text-gray-600">Python, Scrapy, Selenium, Playwright, BeautifulSoup, MongoDB, AWS, and more</p>
+  </section>
+
   <!-- Contact Form -->
   <section id="contact" class="py-16 px-6 max-w-3xl mx-auto">
     <h2 class="text-3xl font-semibold mb-8 text-center">Get in Touch</h2>
@@ -28,6 +65,7 @@
     <p id="status" class="mt-4 text-center text-green-600 hidden">Thank you! We’ll get back to you soon.</p>
   </section>
 
+  <!-- Footer -->
   <footer class="bg-gray-800 text-white py-6 text-center">
     <p>&copy; 2025 Web Scraping Experts. All rights reserved.</p>
   </footer>
@@ -56,7 +94,7 @@
       }
 
       // Call app.py to send email
-      fetch("https://webscraping-k15j.onrender.com/send-email", {
+      fetch("http://127.0.0.1:5000/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, query })
@@ -73,7 +111,7 @@
       })
       .catch(err => {
         console.error("Email error:", err);
-        alert("Thanks for reaching to us. We will contact you ASAP");
+        alert("Error calling backend to send email.");
       });
     });
   </script>
