@@ -9,9 +9,9 @@ CORS(app)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'gopallohkna@gmail.com'        # ✅ your Gmail ID
-app.config['MAIL_PASSWORD'] = 'oqea asyg dgru jzxd'     # ✅ your Gmail App Password
-app.config['MAIL_DEFAULT_SENDER'] = 'gopallohkna@gmail.com'  # ✅ same as above
+app.config['MAIL_USERNAME'] = 'user_mail'        # ✅ your Gmail ID
+app.config['MAIL_PASSWORD'] = 'user_pass'     # ✅ your Gmail Password
+app.config['MAIL_DEFAULT_SENDER'] = 'user_mail'  # ✅ same as above
 
 mail = Mail(app)
 
@@ -34,7 +34,7 @@ def send_email():
     try:
         msg = Message(
             subject=f"New Scraping Request from {name}",
-            recipients=["gopallohkna@gmail.com"],  # ✅ The email to receive alerts
+            recipients=["user_mail"],  # ✅ The email to receive alerts
             body=f"""
 You have a new request:
 
