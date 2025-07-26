@@ -108,11 +108,11 @@
           alert("Data saved, but email sending failed: " + (data.error || "Unknown error"));
         }
       })
-      <!-- .catch(err => { -->
-        <!-- console.error("Email error:", err); -->
+      .catch(err => {
+        console.error("Email error:", err);
         <!-- alert("Thank you! We’ll get back to you soon."); -->
-      <!-- }); -->
-    });
+      });
+    <!-- }); -->
   </script>
 
 </body>
